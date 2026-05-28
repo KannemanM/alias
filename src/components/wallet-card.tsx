@@ -33,7 +33,12 @@ export function WalletCard({ wallet }: WalletCardProps) {
     }
   }, [wallet.alias])
 
-  const isBelo = wallet.id === "belo"
+  const isLight = wallet.textColor !== "#FFFFFF"
+
+  const overlayBg = isLight ? "bg-black/15" : "bg-white/20"
+  const overlayHover = isLight ? "hover:bg-black/25 active:bg-black/35" : "hover:bg-white/30 active:bg-white/40"
+  const ringColor = isLight ? "focus:ring-black/30" : "focus:ring-white/50"
+  const iconColor = isLight ? "text-black/60" : "text-white"
 
   return (
     <>
@@ -65,12 +70,10 @@ export function WalletCard({ wallet }: WalletCardProps) {
             <div
               className={cn(
                 "flex items-center justify-center w-10 h-10 rounded-xl",
-                isBelo ? "bg-indigo-100" : "bg-white/20"
+                overlayBg
               )}
             >
-              <WalletIcon
-                className={cn("h-5 w-5", isBelo ? "text-indigo-600" : "text-white")}
-              />
+              <WalletIcon className={cn("h-5 w-5", iconColor)} />
             </div>
             <span className="font-semibold text-base tracking-tight">
               {wallet.name}
@@ -92,15 +95,10 @@ export function WalletCard({ wallet }: WalletCardProps) {
               className={cn(
                 "flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-sm font-semibold transition-all duration-200",
                 "focus:outline-none focus:ring-2 focus:ring-offset-2",
-                isBelo
-                  ? cn(
-                      "bg-indigo-600 text-white hover:bg-indigo-700 active:bg-indigo-800",
-                      "focus:ring-indigo-500 focus:ring-offset-white"
-                    )
-                  : cn(
-                      "bg-white/20 text-white hover:bg-white/30 active:bg-white/40",
-                      "focus:ring-white/50 focus:ring-offset-0"
-                    )
+                overlayBg,
+                overlayHover,
+                ringColor,
+                isLight ? "text-black/80 focus:ring-offset-black/10" : "text-white focus:ring-offset-0"
               )}
               aria-label={copied ? "Alias copiado" : "Copiar alias"}
             >
@@ -122,15 +120,10 @@ export function WalletCard({ wallet }: WalletCardProps) {
               className={cn(
                 "flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-sm font-semibold transition-all duration-200",
                 "focus:outline-none focus:ring-2 focus:ring-offset-2",
-                isBelo
-                  ? cn(
-                      "border-2 border-indigo-600 text-indigo-600 hover:bg-indigo-50 active:bg-indigo-100",
-                      "focus:ring-indigo-500 focus:ring-offset-white"
-                    )
-                  : cn(
-                      "bg-white/20 text-white hover:bg-white/30 active:bg-white/40",
-                      "focus:ring-white/50 focus:ring-offset-0"
-                    )
+                overlayBg,
+                overlayHover,
+                ringColor,
+                isLight ? "text-black/80 focus:ring-offset-black/10" : "text-white focus:ring-offset-0"
               )}
               aria-label="Ver código QR"
             >
