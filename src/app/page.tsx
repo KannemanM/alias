@@ -28,7 +28,7 @@ export default function Home() {
             </div>
             <h1 className="text-xl font-bold text-zinc-900">{userName}</h1>
             <p className="text-sm text-zinc-500 mt-1">
-              Seleccioná una billetera para copiar los datos
+              Seleccioná una billetera para copiar el alias
             </p>
           </div>
         </header>
